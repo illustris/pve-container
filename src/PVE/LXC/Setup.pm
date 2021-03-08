@@ -15,6 +15,7 @@ use PVE::LXC::Setup::SUSE;
 use PVE::LXC::Setup::ArchLinux;
 use PVE::LXC::Setup::Alpine;
 use PVE::LXC::Setup::Gentoo;
+use PVE::LXC::Setup::NixOS;
 use PVE::LXC::Setup::Devuan;
 
 my $plugins = {
@@ -27,6 +28,7 @@ my $plugins = {
     archlinux => 'PVE::LXC::Setup::ArchLinux',
     alpine    => 'PVE::LXC::Setup::Alpine',
     gentoo    => 'PVE::LXC::Setup::Gentoo',
+    nixos     => 'PVE::LXC::Setup::NixOS',
 };
 
 # a map to allow supporting related distro flavours
@@ -72,6 +74,8 @@ my $autodetect_type = sub {
 	return "alpine";
     } elsif (-f  "$rootdir/etc/gentoo-release") {
 	return "gentoo";
+    } elsif (-d  "$rootdir/nix") {
+        return "nixos";
     } elsif (-f "$rootdir/etc/os-release") {
 	die "unable to detect OS distribution\n";
     } else {
