@@ -12,6 +12,7 @@ use PVE::LXC::Setup::Alpine;
 use PVE::LXC::Setup::ArchLinux;
 use PVE::LXC::Setup::CentOS;
 use PVE::LXC::Setup::Debian;
+use PVE::LXC::Setup::NixOS;
 use PVE::LXC::Setup::Devuan;
 use PVE::LXC::Setup::Fedora;
 use PVE::LXC::Setup::Gentoo;
@@ -29,6 +30,7 @@ my $plugins = {
     gentoo    => 'PVE::LXC::Setup::Gentoo',
     opensuse  => 'PVE::LXC::Setup::SUSE',
     ubuntu    => 'PVE::LXC::Setup::Ubuntu',
+    nixos     => 'PVE::LXC::Setup::NixOS',
     unmanaged => 'PVE::LXC::Setup::Unmanaged',
 };
 
@@ -75,6 +77,8 @@ my $autodetect_type = sub {
 	return "alpine";
     } elsif (-f  "$rootdir/etc/gentoo-release") {
 	return "gentoo";
+    } elsif (-d  "$rootdir/nix") {
+        return "nixos";
     } elsif (-f "$rootdir/etc/os-release") {
 	die "unable to detect OS distribution\n";
     } else {
