@@ -1,4 +1,4 @@
-pve-container (3.3-5) pve; urgency=medium
+pve-container (3.3-5-nixos) pve; urgency=medium
 
   * backup: keep CT template status also for non-root restores
 
