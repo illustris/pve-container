@@ -1,4 +1,4 @@
-pve-container (4.0-9) bullseye; urgency=medium
+pve-container (4.0-9-nixos) bullseye; urgency=medium
 
   * pct cpuset: use limiting cgroup
 
