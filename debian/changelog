@@ -1,4 +1,4 @@
-pve-container (4.1-3) bullseye; urgency=medium
+pve-container (4.1-3-nixos) bullseye; urgency=medium
 
   * setup: support upcomming Ubuntu 22.04 Jammy Jellyfish
 
